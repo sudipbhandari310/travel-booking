@@ -13,7 +13,10 @@ export const register = async (req, res) => {
     const user = await User.create({ name, email, passwordHash, phone, role });
     const token = generateToken(user);
 
-    res.status(201).json({ user, token });
+    res
+      .status(201)
+      .json({ user, token })
+      .message("Successfully created an User.");
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
